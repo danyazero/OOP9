@@ -26,7 +26,7 @@ public class StepFunctions implements IStep{
 
     public double average(List<Point> points){
         double sum = points.stream().mapToDouble(Point::getY).sum();
-        return sum / points.size()+1;
+        return sum / points.size();
     }
 
     public Point getMaxPoint(List<Point> points){
