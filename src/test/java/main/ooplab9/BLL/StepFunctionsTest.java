@@ -16,6 +16,12 @@ class StepFunctionsTest {
     int start = 0;
     int finish = 5;
     int step = 2;
+
+    List<Point> list = new ArrayList<>(Arrays.asList(
+            new Point(0, 0),
+            new Point(2.0, -1.68771),
+            new Point(4.0, 1.85372)
+    ));
     public static double eps = 1e-5;
 
     @BeforeEach
@@ -37,11 +43,6 @@ class StepFunctionsTest {
 
     @Test
     void averageTest() {
-        List<Point> list = new ArrayList<>(Arrays.asList(
-                new Point(0, 0),
-                new Point(2.0, -1.68771),
-                new Point(4.0, 1.85372)
-        ));
         assertEquals(list.get(0).getY(), bll.getPointList(start, finish, step).get(0).getY(), eps);
         assertEquals(list.get(1).getY(), bll.getPointList(start, finish, step).get(1).getY(), eps);
         assertEquals(list.get(2).getY(), bll.getPointList(start, finish, step).get(2).getY(), eps);
@@ -49,9 +50,13 @@ class StepFunctionsTest {
 
     @Test
     void getMaxPointTest() {
+        double expected = list.get(2).getY();
+        assertEquals(expected, bll.getMaxPoint(list).getY());
     }
 
     @Test
     void getMinPointTest() {
+        double expected = list.get(1).getY();
+        assertEquals(expected, bll.getMinPoint(list).getY());
     }
 }
