@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.OptionalDouble;
 
 public class StepFunctions implements IStep{
+    public static final double a = 20.3;
 
     public List<Point> getPointList(double start, double finish, double step) {
         List<Point> points = new ArrayList<>();
@@ -46,9 +47,11 @@ public class StepFunctions implements IStep{
     }
 
     private double f(double x) {
-        double y;
-        y = (x / (1 + Math.tan(x)));
-        return y;
+        if (x > 1.2 + 1e-9) return Math.log10(x + 1);
+        else {
+            double sin = Math.sin(Math.sqrt(a * x));
+            return sin * sin;
+        }
     }
 
 }
